@@ -191,7 +191,7 @@ int AX12::SetMaxTorque (float percentage) {
 
 }
 
-int AX12::SetID (int CurrentID, int NewID) {
+int AX12::SetID (int NewID, int CurrentID) {
 
     char data[1];
     data[0] = NewID;
@@ -305,12 +305,7 @@ float AX12::GetVolts (void) {
     return(volts);
 }
 
-//Fonction spécifique au projet, valeur retour peu fiable (comme précisé dans la doc de l'AX12)
-//////////////////////////////////////////////////////////////////////////////////////////////
-//
-//                                   !!!  NOT WORKING !!!
-//
-//////////////////////////////////////////////////////////////////////////////////////////////
+
 float AX12::GetLoad (void) {
 
     if (AX12_DEBUG) {
@@ -318,48 +313,25 @@ float AX12::GetLoad (void) {
     }
 
     char data[2];
-    /*
-    float min = 376.0;//60.0; // 376 fer
-    float minLimit = 3070.0;//1535.0; // 1436 ouv 2000 3070
-    float maxLimit = 1944.0;//1350.0; // 1084 ouv 1168
-    float max = 3000.0;//1750.0; // 1944
-    */
+
     int ErrorCode = read(_ID, AX12_REG_LOAD, 2, data);
     short val = data[0] + (data[1] << 8);
     if(AX12_CALIB){
             printf("Raw value: %i\n",val);
         }
-    if (val == 1944) { //constante fortement dépendante de la vitesse de rotation et du moteur en lui même, à changer si on change de moteur et de vitesse de rot
-        return 0.8;
+    if (val <=1023) {
+        if(AX12_DEBUG){
+            printf("CounterClockwise: %i\n",val);
         }
-    else return 0.0;
-   /* if(val>0 && val<2048){
-        
-        float signedLoad = 0.0;
-        if(val<(int)min){
-            signedLoad = 0.01;
-        }
-        else if(val>(int)max){
-            signedLoad = 0.01;
-        }
-        else if(val>(int)maxLimit){
-            signedLoad = (max-val)/(max-maxLimit);
-        }
-        else if(val>=(int)minLimit){
-            signedLoad = 1.0;
-        }
-        else if(val<(int)minLimit){
-            signedLoad = (min-val)/(minLimit-min);
-        }
-        if(AX12_CALIB){
-            printf("Signed load: %f\n",signedLoad);
-        }
-        if(AX12_CALIB){
-            printf("Raw value: %i\n",val);
-        }
-        return signedLoad;
+        return (-val/1023.0);
     }
-    else return -1.0;*/
+    else {
+        if(AX12_DEBUG){
+            printf("Clockwise: %i\n",val);
+        }
+        return ((val-1024.0)/1023.0);
+    }
+
 }
 
 

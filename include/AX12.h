@@ -183,7 +183,7 @@ public:
      * If a servo ID is not know, the broadcast address of 0 can be used for CurrentID.
      * In this situation, only one servo should be connected to the bus
      */
-    int SetID(int CurrentID, int NewID);
+    int SetID(int NewID, int CurrentID=254);
 
 
     /** Poll to see if the servo is moving
