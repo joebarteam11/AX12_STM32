@@ -1,6 +1,6 @@
 {
     "name": "AX12_STM32",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Library for Dynamixel AX12 usage without any intermediate board (compatible with MBED, Arduino...)",
     "keywords": "AX12, Mbed, Arduino, STM32, Servo, Dynamixel",
     "repository":
