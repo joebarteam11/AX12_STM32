@@ -1,0 +1,22 @@
+{
+    "name": "AX12_STM32",
+    "version": "1.0.0",
+    "description": "Library for Dynamixel AX12 usage without any intermediate board (compatible with MBED, Arduino...)",
+    "keywords": "AX12, Mbed, Arduino, STM32, Servo, Dynamixel",
+    "repository":
+    {
+      "type": "git",
+      "url": "https://github.com/joebarteam11/AX12_STM32"
+    },
+    "authors":
+    [
+      {
+        "name": "joebarteam11",
+        "email": "85874120+joebarteam11@users.noreply.github.com"
+      }
+    ],
+    "license": "Apache-2.0",
+    "homepage": "https://github.com/ARMmbed/mbed-os/blob/master/LICENSE-apache-2.0.txt",
+    "frameworks": "mbed",
+    "platforms": "STM32"
+  }

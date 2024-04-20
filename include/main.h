@@ -1,8 +1,7 @@
 /**
  * @file main.h
- * @author Mickaël THEOT
- * @brief fichier header contenant les fonctions nécessaires au programme principal
- * Les macros et variables globales sont définies dans ce fichier
+ * @author joebarteam11
+ * @brief basic functions for the AX12 easy control
  * @version 0.2
  * @date 2021-02-19
  * 
